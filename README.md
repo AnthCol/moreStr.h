@@ -22,6 +22,8 @@ It includes many string manipulation functions that exist in Java, such as:
 - subsequence() [maybe]
 - valueOf()
 
+
+
 ## Why did I make string2.h?
 This was made mainly for fun. I felt like making a library and the first thing that came to my mind was to make one of the bad parts of C a little bit better. 
 Granted, this library definitely has its flaws since you need to free your memory manually in main after using some of the functions from this library. 

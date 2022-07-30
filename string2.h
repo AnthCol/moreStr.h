@@ -35,7 +35,7 @@ bool endsWith(const char * input, char check){
     return false; 
 }
 
-bool isEmpty (const char * input){
+bool isEmpty(const char * input){
     int length = 0; 
 
     while (input[length] != '\0'){
