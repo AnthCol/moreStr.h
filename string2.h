@@ -116,7 +116,7 @@ int lastIndexOf(const char * input, const char * check){
     for (i = lengthInput; i >= 0; i--){
         if (input[i] == check[x]){
             start = i; 
-            while (input[i]==check[x]){
+            while (i != lengthInput && input[i]==check[x]){
                 i++; 
                 x++; 
                 if (x > lengthCheck || i > lengthInput) break; 
@@ -144,7 +144,7 @@ int indexOf(const char * input, const char *check){ // add start position argume
     for (i = 0; i < lengthInput; i++){
         if (input[i] == check[x]){
             start = i; 
-            while (input[i] == check[x]){
+            while (i != lengthInput && input[i] == check[x]){
                 i++; 
                 x++; 
                 if (x > lengthCheck || i > lengthInput) break; 
@@ -195,7 +195,7 @@ char * replaceAll (char * input, const char * search, const char * replace){
     for (i = 0; i < lengthInput; i++){
         if (input[i] == search[x]){
             start = i; 
-            while (input[i] == search[x]){
+            while (i != lengthInput && input[i] == search[x]){
                 i++; 
                 x++; 
                 if (x == lengthSearch){
