@@ -5,7 +5,8 @@
 // FIXME To-do list:
 // Make sure all of the functions are safe (or at least as safe as they can be)
 // Make sure all of the functions 
-// get rid of all dependencies on external libraries
+// get rid of all dependencies on external libraries -- stdlib needs to stay for exit(0); 
+// maybe include exiting messages so that the user knows?
 
 
 
@@ -172,6 +173,7 @@ char * replace (char * input, char search, char replace){ // unlike java, this w
     return input; 
 }
 
+// maybe rename these: replace -> replaceChars, replaceAll -> replaceSubstrings
 
 char * replaceAll (char * input, const char * search, const char * replace){
 
@@ -191,16 +193,20 @@ char * replaceAll (char * input, const char * search, const char * replace){
     if (lengthSearch > lengthInput) exit(0); 
     
     for (i = 0; i < lengthInput; i++){
-        start = i; 
         if (input[i] == search[x]){
-            i++; 
-            x++; 
-            if (x == lengthSearch){
-                for (j = start; j < i; j++){
-                    input[i] = replace[z]; 
-                    z++; 
+            start = i; 
+            while (input[i] == search[x]){
+                i++; 
+                x++; 
+                if (x == lengthSearch){
+                    for (j = start; j < i; j++){
+                        input[i] = replace[z]; 
+                        z++; 
+                    }
+                    z = 0; 
+                    x = 0; 
+                    break; 
                 }
-                z = 0; 
             }
         }
     }
@@ -208,7 +214,36 @@ char * replaceAll (char * input, const char * search, const char * replace){
 }
 
 
+int contains (const char * input, const char * search){
 
+    int i = 0, x = 0, lengthInput = 0, lengthSearch = 0;
+
+    while (input[lengthInput] != '\0'){
+        lengthInput++; 
+    }
+    while (search[lengthSearch] != '\0'){
+        lengthSearch++; 
+    }
+    if (lengthSearch > lengthInput) exit(0); 
+
+    for (i = 0; i < lengthInput; i++){
+        if (input[i] == search[x]){
+            while (i != lengthInput && input[i] == search[x]){
+                i++; 
+                x++; 
+                if (x == lengthSearch) return 1; //true 
+            }
+        }
+    }
+
+
+
+
+
+
+
+    return 0; 
+}
 
 
 //WATER YOUR PLANTS BOZO!
