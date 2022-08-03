@@ -346,6 +346,7 @@ int valueOfInt (const char * input){
     for (int i = 0; input[i] != '\0'; i++){
         length++; 
     }
+    length--; 
     if (input[0] == '-'){
         for (int i = length; i > 0; i--){
             temp = input[i]; 
@@ -379,9 +380,6 @@ int valueOfInt (const char * input){
                 case 56: val += 8*multiplier; break; 
                 case 57: val += 9*multiplier; break; 
             }
-
-
-
             multiplier *= 10; 
         }
     }
