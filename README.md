@@ -5,7 +5,7 @@
 ## What is string2.h?
 string2.h is a C library that is intended to be an extension of the pre-existing <string.h> library. 
 It includes many string manipulation functions that exist in Java, such as:
-- substring()  **requires free**
+- substring() 
 - contains() 
 - endsWith()
 - equalsIgnoreCase()
@@ -21,11 +21,15 @@ It includes many string manipulation functions that exist in Java, such as:
 - trim()
 - regionMatches()
 - subsequence() [maybe]
+- valueOfInt()
+    - Java has valueOf where you can do any number. This one will only be for integers
+    - I might add for double/float/long/unsigned/etc. another time. 
+- 
 
 Most of the functions run in O(n) (linear) time. 
 ## Why did I make string2.h?
 This was made mainly for fun. I felt like making a library and the first thing that came to my mind was to make one of the bad parts of C a little bit better. 
-Granted, this library definitely has its flaws since you need to free your memory manually in main after using some of the functions from this library. 
+Granted, this library definitely has its flaws since unlike Java, it does not create a new string and return that when you call the function/method. It will modify the string that is sent to it. I originally used malloc within the functions, but it would require the user to free the memory created in the function which could get messy. Instead, all of the memory management will be done in main by the user of the library, and the functions will only modify the strings sent the function and return them. 
 Other than that, it works well. 
 
 ## What did I learn making string2.h?

@@ -337,3 +337,25 @@ int equalsIgnoreCase(const char * one, const char * two){
     return 1; 
 }
 
+// replaceFirst
+// subsequence
+
+int valueOfInt (const char * input){
+    int val = 0, length = 0, multiplier = 1, temp; 
+    
+    for (int i = 0; input[i] != '\0'; i++){
+        length++; 
+    }
+    if (input[0] == '-'){
+        for (int i = length; i > 0; i--){
+            temp = input[i] - 
+        }
+    }
+    else{
+        for (int i = length; i >= 0; i--){
+
+        }
+    }
+
+    return val; 
+}
