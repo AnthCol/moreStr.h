@@ -5,9 +5,8 @@
 // FIXME To-do list:
 // Make sure all of the functions are safe (or at least as safe as they can be)
 // Make sure all of the functions 
-// get rid of all dependencies on external libraries -- stdlib needs to stay for exit(0); 
+// remove dependency on ctype.h. stdlib has to stay for exit() and malloc/free
 // maybe include exiting messages so that the user knows?
-
 
 
 //FIX ME RUN VALGRIND ON THIS TO MAKE SURE ITS NOT MESSED UP
@@ -301,6 +300,34 @@ int regionMatches(const char * one, int twoOffset, const char * two, int startin
     }
 
 
+
+    return 1; 
+}
+
+int equalsIgnoreCase(const char * one, const char * two){
+
+
+    int length1 = 0, length2 = 0; 
+    for (int i = 0; one[i] != '\0'; i++){
+        length1++; 
+    }
+    for (int i = 0; two[i] != '\0'; i++){
+        length2++; 
+    }
+    if (length1 != length2) return 0; 
+
+    char temp1[length1]; 
+    char temp2[length2]; 
+
+    temp1[length1] = '\0'; 
+    temp2[length2] = '\0'; 
+
+    for (int i = 0; i < length1; i++){
+        if (isupper(one[i])) temp1[i] = tolower(one[i]); 
+        if (isupper(two[i])) temp2[i] = tolower(two[i]); 
+        if (temp1[i] != temp2[i]) return 0; 
+    }
+    
 
     return 1; 
 }
