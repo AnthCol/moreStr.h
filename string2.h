@@ -45,15 +45,20 @@ If it was done that way then it would be up to the user entirely to manage their
     return input; 
 }
 
-int endsWith(const char * input, char check){
-    int i = 0; 
-
-    while (input[i] != '\0'){
-        i++; 
+int endsWith(const char * input, const char * check){
+    int lengthInput = 0, lengthCheck = 0, x = 0; 
+    for (int i = 0; input[i] != '\0'; i++){
+        lengthInput++;
     }
+    for (int i = 0; check[i] != '\0'; i++){
+        lengthCheck++; 
+    }
+    if (lengthCheck > lengthInput) exit(0); 
 
-    if (input[i-1] == check) return 1; 
-    return 0; 
+    for (int i = lengthInput-lengthCheck; input[i] != '\0'; i++, x++){
+        if (input[i] != check[x]) return 0; 
+    }
+    return 1; 
 }
 
 int isEmpty(const char * input){
@@ -327,7 +332,7 @@ int equalsIgnoreCase(const char * one, const char * two){
         if (isupper(two[i])) temp2[i] = tolower(two[i]); 
         if (temp1[i] != temp2[i]) return 0; 
     }
-    
+
 
     return 1; 
 }
