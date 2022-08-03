@@ -21,7 +21,6 @@ It includes many string manipulation functions that exist in Java, such as:
 - trim()
 - regionMatches()
 - subsequence() [maybe]
-- valueOf()
 
 Most of the functions run in O(n) (linear) time. 
 ## Why did I make string2.h?

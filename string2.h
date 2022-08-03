@@ -288,3 +288,20 @@ char * trim (char * input){   // while this is O(n), it is kind of slow | ALSO, 
     return input; 
 }
 
+int regionMatches(const char * one, int twoOffset, const char * two, int starting, int ending){ // this might be awfully implemented
+
+    // need to check safety for lengths (cant have ending past one length, cant have offSet greater than two length etc)
+
+
+    if (ending > starting) exit(0); 
+
+    int x = twoOffset; 
+    for (int i = starting, x = twoOffset; i < ending; i++, x++){
+        if (one[i] != two[x]) return 0; 
+    }
+
+
+
+    return 1; 
+}
+
