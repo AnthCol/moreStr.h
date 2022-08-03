@@ -10,6 +10,10 @@
 
 
 
+//FIX ME RUN VALGRIND ON THIS TO MAKE SURE ITS NOT MESSED UP
+
+
+
 char * substring(const char * input, int leftIndex, int rightIndex){
 
 /* maybe it would be better to avoid malloc and stdlib.h alltogether and just have these functions modify the input strings. 
@@ -236,14 +240,40 @@ int contains (const char * input, const char * search){
         }
     }
 
-
-
-
-
-
-
     return 0; 
 }
 
 
-//WATER YOUR PLANTS BOZO!
+char * trim (char * input){   // while this is O(n), it is kind of slow | ALSO, FIXME (needs to be heavily tested)
+
+    int length = 0, left = 0, right = 0, check = 0, x = 0; 
+    for (int i = 0; input[i] != 0; i++){
+        length++; 
+    }
+    for (int i = 0; input[i] == ' '; i++){
+        left++; 
+    }
+    right = length; 
+    for (int i = length; input[i] == ' '; i--){
+        right--; 
+    }
+
+    char * temp = (char*)malloc(sizeof(char) * (length - left + right)); 
+
+    for (int i = left; i <= right; i++){
+        temp[x] = input[i]; 
+        x++; 
+    }
+
+    temp[x] = '\0'; 
+    for (x = 0; temp[x] != '\0'; x++){
+        input[x] = temp[x]; 
+    }
+    x++; 
+    input[x] = '\0';
+
+
+    free(temp); 
+
+    return input; 
+}
