@@ -348,12 +348,41 @@ int valueOfInt (const char * input){
     }
     if (input[0] == '-'){
         for (int i = length; i > 0; i--){
-            temp = input[i] - 
+            temp = input[i]; 
+            switch(temp){
+                case 49: val -= 1*multiplier; break; 
+                case 50: val -= 2*multiplier; break; 
+                case 51: val -= 3*multiplier; break; 
+                case 52: val -= 4*multiplier; break; 
+                case 53: val -= 5*multiplier; break; 
+                case 54: val -= 6*multiplier; break; 
+                case 55: val -= 7*multiplier; break; 
+                case 56: val -= 8*multiplier; break; 
+                case 57: val -= 9*multiplier; break; 
+            }
+
+            multiplier*= 10; 
         }
+
     }
     else{
         for (int i = length; i >= 0; i--){
+            temp = input[i]; 
+            switch(temp){
+                case 49: val += 1*multiplier; break; 
+                case 50: val += 2*multiplier; break; 
+                case 51: val += 3*multiplier; break; 
+                case 52: val += 4*multiplier; break; 
+                case 53: val += 5*multiplier; break; 
+                case 54: val += 6*multiplier; break; 
+                case 55: val += 7*multiplier; break; 
+                case 56: val += 8*multiplier; break; 
+                case 57: val += 9*multiplier; break; 
+            }
 
+
+
+            multiplier *= 10; 
         }
     }
 
