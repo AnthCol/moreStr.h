@@ -14,7 +14,7 @@
 
 
 
-char * substring(const char * input, int leftIndex, int rightIndex){
+char * substring(char * input, int leftIndex, int rightIndex){
 
 /* maybe it would be better to avoid malloc and stdlib.h alltogether and just have these functions modify the input strings. 
 If it was done that way then it would be up to the user entirely to manage their memory in main, while these functions won't touch memory at all. */
@@ -37,8 +37,13 @@ If it was done that way then it would be up to the user entirely to manage their
         x++; 
     }
     newString[x] = '\0'; 
+    for (i = 0; newString[i] != '\0'; i++){
+        input[i] = newString[i]; 
+    }
+    input[i] = '\0'; 
+    free(newString); 
 
-    return newString; 
+    return input; 
 }
 
 int endsWith(const char * input, char check){
@@ -246,9 +251,14 @@ int contains (const char * input, const char * search){
 
 char * trim (char * input){   // while this is O(n), it is kind of slow | ALSO, FIXME (needs to be heavily tested)
 
-    int length = 0, left = 0, right = 0, check = 0, x = 0; 
+    int length = 0, left = 0, right = 0, check = 0, x = 0, countSpace = 0; 
     for (int i = 0; input[i] != 0; i++){
         length++; 
+        if (input[i] == ' ') countSpace++; 
+    }
+    if (countSpace == length){
+        input[0] = '\0'; 
+        return input; 
     }
     for (int i = 0; input[i] == ' '; i++){
         left++; 
@@ -277,3 +287,4 @@ char * trim (char * input){   // while this is O(n), it is kind of slow | ALSO, 
 
     return input; 
 }
+
