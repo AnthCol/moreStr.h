@@ -4,7 +4,7 @@
 
 ## What is string2.h?
 string2.h is a C library that is intended to be an extension of the pre-existing <string.h> library. 
-It includes many string manipulation functions that exist in Java, such as:
+It includes many string manipulation methods that exist in Java, such as:
 - substring() [Acts like subSequence() in Java]
 - contains() 
 - endsWith()

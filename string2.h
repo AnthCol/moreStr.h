@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <ctype.h>
+#include <stdio.h>
 
 
 // FIXME To-do list:
@@ -20,7 +21,7 @@ If it was done that way then it would be up to the user entirely to manage their
 
 
     if (leftIndex > rightIndex || leftIndex < 0 || input == NULL) exit(0); 
-
+    
     int i, x = 0, length = 0; 
 
     for (i = 0; input[i] != '\0'; i++){ // I'm sure strlen(input) could be fine here, but I wanted to make it myself. 
@@ -28,8 +29,10 @@ If it was done that way then it would be up to the user entirely to manage their
     }
     
     if (rightIndex > length || leftIndex > length || rightIndex - leftIndex == 0) exit(0); 
+    
+    
 
-    char * newString = (char*)malloc(sizeof(char) * (rightIndex - leftIndex)); 
+    char newString [rightIndex-leftIndex]; 
     // works like the java one, where the rightIndex should be the character after the one you want. 
     for (i = leftIndex; i < rightIndex; i++){
         newString[x] = input[i]; 
@@ -40,8 +43,7 @@ If it was done that way then it would be up to the user entirely to manage their
         input[i] = newString[i]; 
     }
     input[i] = '\0'; 
-    free(newString); 
-
+    
     return input; 
 }
 
@@ -172,15 +174,18 @@ int indexOf(const char * input, const char *check){ // add start position argume
     return -1; 
 }
 
-char * replace (char * input, char search, char replace){ // unlike java, this will modify the string, NOT make a new one and then modify it. 
+char * replace (char * input, char search, char replace){  
     int i = 0, length = 0; 
+
 
     while(input[length] != '\0'){
         length++; 
     }
 
     for (i = 0; i < length; i++){
-        if (input[i] == search) input[i] = replace; 
+        if (input[i] == search){
+            input[i] = replace;
+        }
     }
 
     return input; 
