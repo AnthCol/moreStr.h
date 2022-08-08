@@ -150,10 +150,9 @@ int lastIndexOf(const char * input, const char * check){
                 if (x > lengthCheck || i > lengthInput) break; 
             }
             if (x == lengthCheck) return start; 
+            i = start - 1; 
         }
-        i = start; 
         x = 0; 
-
     }
     return -1; 
 }
