@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <ctype.h>
-#include <stdio.h>
+#include <string.h>
 
 
 // FIXME To-do list:
@@ -14,37 +14,46 @@
 
 
 
-char * substring(char * input, int leftIndex, int rightIndex){
+char * substring(char * tempString, int leftIndex, int rightIndex){
 
 /* maybe it would be better to avoid malloc and stdlib.h alltogether and just have these functions modify the input strings. 
 If it was done that way then it would be up to the user entirely to manage their memory in main, while these functions won't touch memory at all. */
 
 
-    if (leftIndex > rightIndex || leftIndex < 0 || input == NULL) exit(0); 
-    
+    if (leftIndex > rightIndex || leftIndex < 0 || tempString == NULL) exit(0); 
+   
     int i, x = 0, length = 0; 
 
-    for (i = 0; input[i] != '\0'; i++){ // I'm sure strlen(input) could be fine here, but I wanted to make it myself. 
+    for (i = 0; tempString[i] != '\0'; i++){ // I'm sure strlen(tempString) could be fine here, but I wanted to make it myself. 
         length++; 
     }
     
     if (rightIndex > length || leftIndex > length || rightIndex - leftIndex == 0) exit(0); 
     
     
+ 
+    char * newString = (char*)malloc(sizeof(char) * (rightIndex-leftIndex+1)); 
 
-    char newString [rightIndex-leftIndex]; 
+  
+    
     // works like the java one, where the rightIndex should be the character after the one you want. 
     for (i = leftIndex; i < rightIndex; i++){
-        newString[x] = input[i]; 
+        newString[x] = tempString[i]; 
         x++; 
     }
+
+    char * returnString = (char*)malloc(sizeof(char) * rightIndex - leftIndex + 1); 
     newString[x] = '\0'; 
-    for (i = 0; newString[i] != '\0'; i++){
-        input[i] = newString[i]; 
-    }
-    input[i] = '\0'; 
-    
-    return input; 
+
+    strcpy(returnString, newString); 
+ 
+    printf("%s\n", returnString); 
+    strcpy(tempString, returnString); 
+
+    printf("printing tempString %s\n", tempString); 
+    free(newString); 
+    free(returnString); 
+    return tempString; 
 }
 
 int endsWith(const char * input, const char * check){
@@ -102,7 +111,11 @@ int startsWith(const char * input, const char * check){
 char * toLowerCase(char * input){  
     for (int i = 0; input[i] != '\0'; i++){
         if (isupper(input[i])){
-            tolower(input[i]); 
+            // input[i] = tolower(input[i]); 
+            // problem here is that I am trying to change a string literal
+            // need to make it so that it isnt that way, or revert back to the old form
+            // of the library where the user must call free in main. 
+
         }
     }
     return input; 
@@ -111,7 +124,7 @@ char * toLowerCase(char * input){
 char * toUpperCase(char * input){
     for (int i = 0; input[i] != '\0'; i++){
         if (islower(input[i])){
-            toupper(input[i]); 
+          //  input[i] = toupper(input[i]); 
         }
     }
     return input; 
@@ -302,7 +315,7 @@ int regionMatches(const char * one, int twoOffset, const char * two, int startin
     // need to check safety for lengths (cant have ending past one length, cant have offSet greater than two length etc)
 
 
-    if (ending > starting) exit(0); 
+    if (ending < starting) exit(0); 
 
     int x = twoOffset; 
     for (int i = starting, x = twoOffset; i < ending; i++, x++){
