@@ -16,8 +16,11 @@
 
 char * substring(char * tempString, int leftIndex, int rightIndex){
 
-/* maybe it would be better to avoid malloc and stdlib.h alltogether and just have these functions modify the input strings. 
-If it was done that way then it would be up to the user entirely to manage their memory in main, while these functions won't touch memory at all. */
+
+// next is to use memset/other memory stuff so that this returns the modified tempString 
+// back to main
+
+// alternative would be to have the user free memory in main and call malloc here 
 
 
     if (leftIndex > rightIndex || leftIndex < 0 || tempString == NULL) exit(0); 
@@ -34,15 +37,15 @@ If it was done that way then it would be up to the user entirely to manage their
  
     char * newString = (char*)malloc(sizeof(char) * (rightIndex-leftIndex+1)); 
 
-  
-    
-    // works like the java one, where the rightIndex should be the character after the one you want. 
     for (i = leftIndex; i < rightIndex; i++){
         newString[x] = tempString[i]; 
         x++; 
     }
-
-    char * returnString = (char*)malloc(sizeof(char) * rightIndex - leftIndex + 1); 
+    for (int i = 0; i < (rightIndex-leftIndex); i++){
+     //   tempString[i] = newString[i]; 
+    }
+    return; 
+  /*  char * returnString = (char*)malloc(sizeof(char) * rightIndex - leftIndex + 1); 
     newString[x] = '\0'; 
 
     strcpy(returnString, newString); 
@@ -52,8 +55,8 @@ If it was done that way then it would be up to the user entirely to manage their
 
     printf("printing tempString %s\n", tempString); 
     free(newString); 
-    free(returnString); 
-    return tempString; 
+    free(returnString);  */
+   // return tempString; 
 }
 
 int endsWith(const char * input, const char * check){
