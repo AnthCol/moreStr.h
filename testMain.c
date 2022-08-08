@@ -56,13 +56,13 @@ int main(void){
     printf("[should be true] regionMatches 16-24: %d\n", regionMatches(tempString, 6, tempString2, 16, 24)); 
     printf("[should be false] regionMatches 2-4: %d\n", regionMatches(tempString, 0, tempString2, 2, 4)); 
     // working
-    
+
     char * upper = "HELLO"; 
     char * lower = "hello"; 
     printf("does %s equal %s when ignoring case? -> %d\n", upper, lower, equalsIgnoreCase(upper, lower)); 
     // working
 
-    char * intStringNeg = "-1234"; 
+    char * intStringNeg = "-1234"; // needs to be tested for very large values 
     char * intStringPos = "1234"; 
   
     printf("values: %s and %s, now using value of int + 1 for both: %d and %d\n", intStringNeg, intStringPos, valueOfInt(intStringNeg) + 1, valueOfInt(intStringPos) + 1);

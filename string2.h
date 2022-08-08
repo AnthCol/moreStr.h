@@ -342,16 +342,18 @@ int equalsIgnoreCase(const char * one, const char * two){
     char temp1[length1]; 
     char temp2[length2]; 
 
-    temp1[length1] = '\0'; 
-    temp2[length2] = '\0'; 
+    temp1[0] = '\0'; 
+    temp2[0] = '\0'; 
+    
 
     for (int i = 0; i < length1; i++){
         if (isupper(one[i])) temp1[i] = tolower(one[i]); 
+        else temp1[i] = one[i]; 
         if (isupper(two[i])) temp2[i] = tolower(two[i]); 
+        else temp2[i] = two[i]; 
         if (temp1[i] != temp2[i]) return 0; 
     }
-
-
+   
     return 1; 
 }
 
