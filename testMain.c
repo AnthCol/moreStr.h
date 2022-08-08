@@ -36,8 +36,8 @@ int main(void){
     //printf("after tolowercase: %s\n", toLowerCase(upperCase)); // seg fault
     //printf("after touppercase: %s\n", toUpperCase(upperCase)); // seg fault
 
-    //printf("Index of 't': %d\n", indexOf(tempString, "t")); ????
-    //printf("lastIndex of '5': %d\n", lastIndexOf(tempString, "t")); ???
+    printf("Index of 'this': %d\n", indexOf(tempString, "this")); 
+    printf("lastIndex of '5': %d\n", lastIndexOf(tempString, "t")); 
 
    // printf("replacing the t's with z's: %s\n", replace(tempString, 't', 'z')); // seg
     //printf("replacing them back: %s\n", replace(tempString, 'z', 't'));  // seg

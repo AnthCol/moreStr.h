@@ -168,18 +168,17 @@ int indexOf(const char * input, const char *check){ // add start position argume
         lengthCheck++; 
     }
     if (lengthCheck > lengthInput) return -1; 
-
+    
     for (i = 0; i < lengthInput; i++){
         if (input[i] == check[x]){
             start = i; 
-            while (i != lengthInput && input[i] == check[x]){
+            while (i != lengthInput  && x != lengthCheck && input[i] == check[x]){
                 i++; 
                 x++; 
-                if (x > lengthCheck || i > lengthInput) break; 
             }
             if (x == lengthCheck) return start; 
+            i = start + 1; 
         }
-        i = start; 
         x = 0; 
     }
 
