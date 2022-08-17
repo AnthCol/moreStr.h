@@ -232,8 +232,6 @@ int equalsIgnoreCase(const char * one, const char * two){
     return 1; 
 }
 
-// replaceFirst
-// subsequence
 
 int valueOfInt (const char * input){
     int val = 0, length = 0, multiplier = 1, temp; 
