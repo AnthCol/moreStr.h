@@ -13,15 +13,16 @@ int main(void){
     for (int i = 0; tempString[i] != '\0'; i++){
         length++; 
     }
+    
     printf("length of tempsTring is: %d\n", length);  
     printf("The tempstring is: %s\n", tempString);  
     
     
-   // char * sub = substring(tempString, 1, 8);  // segfault
-    substring(tempString, 1, 8); 
-    printf("printing substring [index 1 to 8]: %s\n", tempString); 
+    char * sub = substring(tempString, 1, 9);  
+ 
+    printf("printing substring [index 1 to 8]: %s\n", sub); 
 
-    
+    free (sub); 
 
     printf("Ends with z: %d\n", endsWith(tempString, "z")); 
     printf("Ends with g: %d\n", endsWith(tempString, "g")); 
@@ -33,9 +34,14 @@ int main(void){
     printf("Starts with h: %d\n", startsWith(tempString, "h")); 
 
     char * upperCase = "HELLO THIS IS A TEMPORARY STRING"; 
-   // printf("before: %s\n", upperCase); 
-    //printf("after tolowercase: %s\n", toLowerCase(upperCase)); // seg fault
-    //printf("after touppercase: %s\n", toUpperCase(upperCase)); // seg fault
+    char * lower = toLowerCase(upperCase); 
+    
+    printf("before: %s\n", upperCase); 
+    printf("after tolowercase: %s\n", lower);
+    char * upper = toUpperCase(lower); 
+    printf("after touppercase: %s\n", upper); 
+    free(lower); 
+    free(upper); 
 
     printf("Index of 'this': %d\n", indexOf(tempString, "this")); 
     printf("lastIndex of 't': %d\n", lastIndexOf(tempString, "t")); 
@@ -58,9 +64,9 @@ int main(void){
     printf("[should be false] regionMatches 2-4: %d\n", regionMatches(tempString, 0, tempString2, 2, 4)); 
    
 
-    char * upper = "HELLO"; 
-    char * lower = "hello"; 
-    printf("does %s equal %s when ignoring case? -> %d\n", upper, lower, equalsIgnoreCase(upper, lower)); 
+    char * upper2 = "HELLO"; 
+    char * lower2 = "hello"; 
+    printf("does %s equal %s when ignoring case? -> %d\n", upper2, lower2, equalsIgnoreCase(upper2, lower2)); 
     
 
     char * intStringNeg = "-1234"; 

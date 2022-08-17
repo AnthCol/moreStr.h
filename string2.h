@@ -16,13 +16,6 @@
 
 char * substring(char * tempString, int leftIndex, int rightIndex){
 
-
-// next is to use memset/other memory stuff so that this returns the modified tempString 
-// back to main
-
-// alternative would be to have the user free memory in main and call malloc here 
-
-
     if (leftIndex > rightIndex || leftIndex < 0 || tempString == NULL) exit(0); 
    
     int i, x = 0, length = 0; 
@@ -32,31 +25,16 @@ char * substring(char * tempString, int leftIndex, int rightIndex){
     }
     
     if (rightIndex > length || leftIndex > length || rightIndex - leftIndex == 0) exit(0); 
-    
-    
- 
-    char * newString = (char*)malloc(sizeof(char) * (rightIndex-leftIndex+1)); 
 
+    char * newString = (char*)malloc(sizeof(char) * (rightIndex-leftIndex+1)); 
+    
     for (i = leftIndex; i < rightIndex; i++){
         newString[x] = tempString[i]; 
         x++; 
     }
-    for (int i = 0; i < (rightIndex-leftIndex); i++){
-     //   tempString[i] = newString[i]; 
-    }
-    return; 
-  /*  char * returnString = (char*)malloc(sizeof(char) * rightIndex - leftIndex + 1); 
-    newString[x] = '\0'; 
+    newString[x] = '\0';  
 
-    strcpy(returnString, newString); 
- 
-    printf("%s\n", returnString); 
-    strcpy(tempString, returnString); 
-
-    printf("printing tempString %s\n", tempString); 
-    free(newString); 
-    free(returnString);  */
-   // return tempString; 
+    return newString; 
 }
 
 int endsWith(const char * input, const char * check){
@@ -112,25 +90,32 @@ int startsWith(const char * input, const char * check){
 
 
 char * toLowerCase(char * input){  
-    for (int i = 0; input[i] != '\0'; i++){
-        if (isupper(input[i])){
-            // input[i] = tolower(input[i]); 
-            // problem here is that I am trying to change a string literal
-            // need to make it so that it isnt that way, or revert back to the old form
-            // of the library where the user must call free in main. 
-
-        }
+    int length = 0, i = 0; 
+    for (i = 0; input[i] != '\0'; i++){
+        length++; 
     }
-    return input; 
+    char * newString = (char*)malloc(sizeof(char) * length); 
+    for (i = 0; i < length; i++){
+        if (isupper(input[i])) newString[i] = tolower(input[i]); 
+        else newString[i] = input[i]; 
+    }
+    newString[i] = '\0'; 
+    return newString; 
 }
 
 char * toUpperCase(char * input){
-    for (int i = 0; input[i] != '\0'; i++){
-        if (islower(input[i])){
-          //  input[i] = toupper(input[i]); 
-        }
+    int length = 0, i = 0; 
+    for (i = 0; input[i] != '\0'; i++){
+        length++; 
     }
-    return input; 
+    char * newString = (char*)malloc(sizeof(char) * length); 
+
+    for (i = 0; i < length; i++){
+        if (islower(input[i])) newString[i] = toupper(input[i]); 
+        else newString[i] = input[i]; 
+    }
+    newString[i] = '\0'; 
+    return newString; 
 }
 
 int lastIndexOf(const char * input, const char * check){
