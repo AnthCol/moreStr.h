@@ -7,7 +7,6 @@
 
 int main(void){
     char * tempString = "hello this is a temporary string"; 
-    char * number = "-1234"; 
     char * empty = ""; 
     int length = 0; 
     for (int i = 0; tempString[i] != '\0'; i++){

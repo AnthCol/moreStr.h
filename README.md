@@ -15,7 +15,7 @@ The functions below that say "requires free" do the same thing that some of the 
 - isEmpty() 
 - lastIndexOf()
 - startsWith()
-- trim()
+- trim() **required free**
 - regionMatches()
 - valueOfInt()
     - Java has valueOf where you can do any number. This one will only be for integers
@@ -32,12 +32,7 @@ Other than that, it works well.
 The main issue I have with this library is that it requires the user to call free in main and keep track of memory that was allocated in the function. When you don't do the memory allocation by hand it can be an easy thing to forget about, so I really don't like that it is set up that way. 
 I would like to learn more about memory management in C to see if it is even possible to modify strings the way I want to. I have already done a little bit of research into it and with what I was seeing it made me feel as though I would have to settle with this solution for now. Maybe I will come across something in the future that will allow me to modify the values of the string that was passed to the function and then send it back to main. 
 
-// NEEDS TO BE TESTED: It has been run in Valgrind, and as long as the memory is freed in main. There are no memory leaks as a result of the functions I wrote. 
-
 ## What did I learn making string2.h?
-Originally, I was going to create this library in a way that would require the user to free memory in main that was allocated within the functions I wrote. 
+Honestly not very much. I wanted to make this library for my own convenience, but I was able to do it with knowledge previously gained in my university classes. Still good practice for string handling though :)
 
-This has great potential to cause memory leaks, and I would also not have learned anything new about the C language writing the functions this way. 
-
-Instead, I decided to learn about how to manage memory in C in the way that is done in the original <string.h> library so that the user does not need to do anything extra. This involved using pre-existing functions in the string.h library like memset, memcpy etc. **fixme**
 

@@ -1,18 +1,10 @@
 #include <stdlib.h>
-#include <ctype.h>
 #include <string.h>
 
 
-// FIXME To-do list:
+// To-do list:
 // Make sure all of the functions are safe (or at least as safe as they can be)
-// Make sure all of the functions 
-// remove dependency on ctype.h. stdlib has to stay for exit() and malloc/free
 // maybe include exiting messages so that the user knows?
-
-
-//FIX ME RUN VALGRIND ON THIS TO MAKE SURE ITS NOT MESSED UP
-
-
 
 char * substring(char * tempString, int leftIndex, int rightIndex){
 
@@ -169,7 +161,7 @@ int contains (const char * input, const char * search){
 
 char * trim (char * input){   // while this is O(n), it is kind of slow
 
-    int length = 0, left = 0, right = 0, check = 0, x = 0, countSpace = 0; 
+    int length = 0, left = 0, right = 0, x = 0, countSpace = 0; 
     for (int i = 0; input[i] != 0; i++){
         length++; 
         if (input[i] == ' ') countSpace++; 
@@ -203,13 +195,9 @@ int regionMatches(const char * one, int twoOffset, const char * two, int startin
 
 
     if (ending < starting) exit(0); 
-
-    int x = twoOffset; 
     for (int i = starting, x = twoOffset; i < ending; i++, x++){
         if (one[i] != two[x]) return 0; 
     }
-
-
 
     return 1; 
 }
