@@ -32,22 +32,32 @@ int main(void){
 
     printf("Starts with z: %d\n", startsWith(tempString, "z"));  
     printf("Starts with h: %d\n", startsWith(tempString, "h")); 
-
+/*
     char * upperCase = "HELLO THIS IS A TEMPORARY STRING"; 
     char * lower = toLowerCase(upperCase); 
-    
-    printf("before: %s\n", upperCase); 
+    char * lowerCase = "hello this is a temporary string"; 
+    printf("before (uppercase string): %s\n", upperCase); 
     printf("after tolowercase: %s\n", lower);
-    char * upper = toUpperCase(lower); 
-    printf("after touppercase: %s\n", upper); 
     free(lower); 
+    printf("before (lowercase string): %s\n", lowerCase); 
+    char * upper = toUpperCase(lowerCase); 
+    printf("after touppercase: %s\n", upper); 
     free(upper); 
-
+*/
     printf("Index of 'this': %d\n", indexOf(tempString, "this")); 
     printf("lastIndex of 't': %d\n", lastIndexOf(tempString, "t")); 
+    char * replaceString1; 
+    strcpy(replaceString1, tempString); 
+    replaceString1 = replace(tempString, 't', 'z'); 
+    printf("replacing the t's with z's: %s\n", replaceString1); 
+    char * replaceString2; 
+    strcpy(replaceString2, tempString);
+    replaceString2 = replace(tempString, 'z', 't');  
+    printf("replacing them back: %s\n", replace(tempString, 'z', 't'));  
+    free(replaceString1); 
+    free(replaceString2); 
 
-   // printf("replacing the t's with z's: %s\n", replace(tempString, 't', 'z')); // seg
-    //printf("replacing them back: %s\n", replace(tempString, 'z', 't'));  // seg
+
 
    // printf("replacing all 'orary' with 'bonjour': %s\n", replaceAll(tempString, "orary", "bonjour")); SEG
    // printf("replacing it back to normal: %s\n", replaceAll(tempString, "bonjour", "orary")); SEG

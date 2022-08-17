@@ -86,15 +86,16 @@ int startsWith(const char * input, const char * check){
 
 
 
-/* Do these two functions below by hand. Get rid of the ctype.h reliance */
 
 
+/*
 char * toLowerCase(char * input){  
     int length = 0, i = 0; 
     for (i = 0; input[i] != '\0'; i++){
         length++; 
     }
     char * newString = (char*)malloc(sizeof(char) * length); 
+    strcpy(newString, input); 
     for (i = 0; i < length; i++){
         if (isupper(input[i])) newString[i] = tolower(input[i]); 
         else newString[i] = input[i]; 
@@ -109,14 +110,14 @@ char * toUpperCase(char * input){
         length++; 
     }
     char * newString = (char*)malloc(sizeof(char) * length); 
-
+    strcpy(newString, input); 
     for (i = 0; i < length; i++){
-        if (islower(input[i])) newString[i] = toupper(input[i]); 
+        if (islower(newString[i])) newString[i] = toupper(newString[i]); 
         else newString[i] = input[i]; 
     }
     newString[i] = '\0'; 
     return newString; 
-}
+} */
 
 int lastIndexOf(const char * input, const char * check){
 
@@ -181,13 +182,13 @@ char * replace (char * input, char search, char replace){
         length++; 
     }
 
+    char * newString = (char*)malloc(sizeof(char) * length); 
+    strcpy(newString, input); 
     for (i = 0; i < length; i++){
-        if (input[i] == search){
-            input[i] = replace;
-        }
+        if (newString[i] == search) newString[i] = replace;
     }
 
-    return input; 
+    return newString;
 }
 
 // maybe rename these: replace -> replaceChars, replaceAll -> replaceSubstrings

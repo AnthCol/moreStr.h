@@ -18,8 +18,6 @@ The functions below that say "requires free" do the same thing that some of the 
 - replace()
 - replaceAll()
 - startsWith()
-- toLowerCase() **requires free**
-- toUpperCase() **requires free**
 - trim()
 - regionMatches()
 - valueOfInt()
