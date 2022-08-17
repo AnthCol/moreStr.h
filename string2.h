@@ -86,39 +86,6 @@ int startsWith(const char * input, const char * check){
 
 
 
-
-
-/*
-char * toLowerCase(char * input){  
-    int length = 0, i = 0; 
-    for (i = 0; input[i] != '\0'; i++){
-        length++; 
-    }
-    char * newString = (char*)malloc(sizeof(char) * length); 
-    strcpy(newString, input); 
-    for (i = 0; i < length; i++){
-        if (isupper(input[i])) newString[i] = tolower(input[i]); 
-        else newString[i] = input[i]; 
-    }
-    newString[i] = '\0'; 
-    return newString; 
-}
-
-char * toUpperCase(char * input){
-    int length = 0, i = 0; 
-    for (i = 0; input[i] != '\0'; i++){
-        length++; 
-    }
-    char * newString = (char*)malloc(sizeof(char) * length); 
-    strcpy(newString, input); 
-    for (i = 0; i < length; i++){
-        if (islower(newString[i])) newString[i] = toupper(newString[i]); 
-        else newString[i] = input[i]; 
-    }
-    newString[i] = '\0'; 
-    return newString; 
-} */
-
 int lastIndexOf(const char * input, const char * check){
 
     int lengthInput = 0, lengthCheck = 0, i = 0, x = 0, start; 
@@ -133,7 +100,7 @@ int lastIndexOf(const char * input, const char * check){
     for (i = lengthInput; i >= 0; i--){
         if (input[i] == check[x]){
             start = i; 
-            while (i != lengthInput && input[i]==check[x]){
+            while (i != lengthInput && input[i] == check[x]){
                 i++; 
                 x++; 
                 if (x > lengthCheck || i > lengthInput) break; 
@@ -174,64 +141,6 @@ int indexOf(const char * input, const char *check){ // add start position argume
     return -1; 
 }
 
-char * replace (char * input, char search, char replace){  
-    int i = 0, length = 0; 
-
-
-    while(input[length] != '\0'){
-        length++; 
-    }
-
-    char * newString = (char*)malloc(sizeof(char) * length); 
-    strcpy(newString, input); 
-    for (i = 0; i < length; i++){
-        if (newString[i] == search) newString[i] = replace;
-    }
-
-    return newString;
-}
-
-// maybe rename these: replace -> replaceChars, replaceAll -> replaceSubstrings
-
-char * replaceAll (char * input, const char * search, const char * replace){
-
-    int i = 0, x = 0, j = 0, z = 0, start = 0, lengthInput = 0, lengthSearch = 0, lengthReplace = 0; 
-
-    while (input[lengthInput] != '\0'){
-        lengthInput++; 
-    }
-    while (search[lengthSearch] != '\0'){
-        lengthSearch++; 
-    }
-    while (replace[lengthReplace] != '\0'){
-        lengthReplace++; 
-    }
-
-    if (lengthReplace > lengthSearch) exit(0); 
-    if (lengthSearch > lengthInput) exit(0); 
-    
-    for (i = 0; i < lengthInput; i++){
-        if (input[i] == search[x]){
-            start = i; 
-            while (i != lengthInput && input[i] == search[x]){
-                i++; 
-                x++; 
-                if (x == lengthSearch){
-                    for (j = start; j < i; j++){
-                        input[i] = replace[z]; 
-                        z++; 
-                    }
-                    z = 0; 
-                    x = 0; 
-                    break; 
-                }
-            }
-        }
-    }
-    return input; 
-}
-
-
 int contains (const char * input, const char * search){
 
     int i = 0, x = 0, lengthInput = 0, lengthSearch = 0;
@@ -258,7 +167,7 @@ int contains (const char * input, const char * search){
 }
 
 
-char * trim (char * input){   // while this is O(n), it is kind of slow | ALSO, FIXME (needs to be heavily tested)
+char * trim (char * input){   // while this is O(n), it is kind of slow
 
     int length = 0, left = 0, right = 0, check = 0, x = 0, countSpace = 0; 
     for (int i = 0; input[i] != 0; i++){
@@ -285,16 +194,7 @@ char * trim (char * input){   // while this is O(n), it is kind of slow | ALSO, 
     }
 
     temp[x] = '\0'; 
-    for (x = 0; temp[x] != '\0'; x++){
-        input[x] = temp[x]; 
-    }
-    x++; 
-    input[x] = '\0';
-
-
-    free(temp); 
-
-    return input; 
+    return temp; 
 }
 
 int regionMatches(const char * one, int twoOffset, const char * two, int starting, int ending){ // this might be awfully implemented
