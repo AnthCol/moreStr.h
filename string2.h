@@ -1,8 +1,10 @@
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 
 // To-do list:
+// Remove dependence on ctype.h?
 // Make sure all of the functions are safe (or at least as safe as they can be)
 // maybe include exiting messages so that the user knows?
 
