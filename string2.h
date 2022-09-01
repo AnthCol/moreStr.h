@@ -10,7 +10,7 @@
 
 char * substring(char * tempString, int leftIndex, int rightIndex){
 
-    if (leftIndex > rightIndex || leftIndex < 0 || tempString == NULL) exit(0); 
+    if (leftIndex > rightIndex || leftIndex < 0 || tempString[0] == '\0') exit(0); 
    
     int i, x = 0, length = 0; 
 
@@ -33,13 +33,14 @@ char * substring(char * tempString, int leftIndex, int rightIndex){
 
 int endsWith(const char * input, const char * check){
     int lengthInput = 0, lengthCheck = 0, x = 0; 
+   
     for (int i = 0; input[i] != '\0'; i++){
         lengthInput++;
     }
     for (int i = 0; check[i] != '\0'; i++){
         lengthCheck++; 
     }
-    if (lengthCheck > lengthInput) exit(0); 
+    if (lengthCheck > lengthInput || lengthInput == 0 || lengthCheck == 0) exit(0); 
 
     for (int i = lengthInput-lengthCheck; input[i] != '\0'; i++, x++){
         if (input[i] != check[x]) return 0; 
@@ -48,13 +49,14 @@ int endsWith(const char * input, const char * check){
 }
 
 int isEmpty(const char * input){
-    int length = 0; 
+    if (input[0] == '\0') return 1; // FIXME needs testing
+   /* int length = 0; 
 
     while (input[length] != '\0'){
         length++;
     }
 
-    if (length == 0) return 1;
+    if (length == 0) return 1; */
     return 0; 
 }
 
