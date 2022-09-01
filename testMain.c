@@ -38,7 +38,8 @@ int main(void){
     printf("contains 'this': %d\n", contains(tempString, "this")); 
     printf("contains bonjour: %d\n", contains(tempString, "bonjour")); 
 
-    char * trimIt = "            hello!            ";
+  //  char * trimIt = "            hello!            ";
+    char * trimIt = "hello!"; 
     printf("pre trim: %s\n", trimIt); 
     char * trimAfter = trim(trimIt); 
     printf("after trim: %s\n", trimAfter); 

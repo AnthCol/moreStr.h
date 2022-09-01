@@ -7,6 +7,7 @@
 // Remove dependence on ctype.h?
 // Make sure all of the functions are safe (or at least as safe as they can be)
 // maybe include exiting messages so that the user knows?
+// need to rerun through valgrind after changes *****FIXME*****
 
 char * substring(char * tempString, int leftIndex, int rightIndex){
 
@@ -49,14 +50,7 @@ int endsWith(const char * input, const char * check){
 }
 
 int isEmpty(const char * input){
-    if (input[0] == '\0') return 1; // FIXME needs testing
-   /* int length = 0; 
-
-    while (input[length] != '\0'){
-        length++;
-    }
-
-    if (length == 0) return 1; */
+    if (input[0] == '\0') return 1;
     return 0; 
 }
 
@@ -68,7 +62,7 @@ int startsWith(const char * input, const char * check){
     while (check[x] != '\0'){
         x++; 
     }
-    if (x > i) exit(0); 
+    if (x > i || i == 0 || x == 0) exit(0); 
 
     i = 0; 
 
@@ -91,7 +85,7 @@ int lastIndexOf(const char * input, const char * check){
     while (check[lengthCheck] != '\0'){
         lengthCheck++; 
     }
-    if (lengthCheck > lengthInput) return -1; 
+    if (lengthCheck > lengthInput || lengthInput == 0 || lengthCheck == 0) return -1; 
     
     for (i = lengthInput; i >= 0; i--){
         if (input[i] == check[x]){
@@ -109,7 +103,7 @@ int lastIndexOf(const char * input, const char * check){
     return -1; 
 }
 
-int indexOf(const char * input, const char *check){ // add start position argument like in java?
+int indexOf(const char * input, const char *check){ // add start position argument like in Java? (maybe FIXME)
 
     int lengthInput = 0, lengthCheck = 0, i = 0, x = 0, start; 
     while (input[lengthInput] != '\0'){
@@ -147,7 +141,7 @@ int contains (const char * input, const char * search){
     while (search[lengthSearch] != '\0'){
         lengthSearch++; 
     }
-    if (lengthSearch > lengthInput) exit(0); 
+    if (lengthSearch > lengthInput || lengthInput == 0 || lengthSearch == 0) exit(0); 
 
     for (i = 0; i < lengthInput; i++){
         if (input[i] == search[x]){
@@ -163,17 +157,29 @@ int contains (const char * input, const char * search){
 }
 
 
-char * trim (char * input){   // while this is O(n), it is kind of slow
+char * trim (const char * input){   // while this is O(n), it is kind of slow
 
     int length = 0, left = 0, right = 0, x = 0, countSpace = 0; 
     for (int i = 0; input[i] != 0; i++){
         length++; 
         if (input[i] == ' ') countSpace++; 
     }
-    if (countSpace == length){
-        input[0] = '\0'; 
-        return input; 
+
+    if (length == 0) exit(0); 
+
+    if (countSpace == 0){
+        // allocating memory here for consistency in main. 
+        // Don't want it to free the string that was sent to the function by returning input
+        char * temp = (char*)malloc(sizeof(char) * length); 
+        strcpy(temp, input); 
+        return temp; 
     }
+    else if (countSpace == length){
+        char * temp = (char*)malloc(sizeof(int) * 1); 
+        temp[0] = '\0';
+        return temp; 
+    }
+
     for (int i = 0; input[i] == ' '; i++){
         left++; 
     }
@@ -193,12 +199,19 @@ char * trim (char * input){   // while this is O(n), it is kind of slow
     return temp; 
 }
 
-int regionMatches(const char * one, int twoOffset, const char * two, int starting, int ending){ // this might be awfully implemented
+int regionMatches(const char * one, int twoOffset, const char * two, int starting, int ending){ // FIXME maybe change the order of the arguments here to make it more intuitive. 
 
-    // need to check safety for lengths (cant have ending past one length, cant have offSet greater than two length etc)
+    int lengthOne = 0, lengthTwo = 0; 
 
+    while (one[lengthOne] != '\0'){
+        lengthOne++; 
+    }
+    while (two[lengthTwo] != '\0'){
+        lengthTwo++; 
+    }
+    
+    if (ending < starting || lengthOne == 0 || lengthTwo == 0 || ending > lengthOne || ending > lengthTwo || starting < 0) exit(0); 
 
-    if (ending < starting) exit(0); 
     for (int i = starting, x = twoOffset; i < ending; i++, x++){
         if (one[i] != two[x]) return 0; 
     }
@@ -217,6 +230,7 @@ int equalsIgnoreCase(const char * one, const char * two){
         length2++; 
     }
     if (length1 != length2) return 0; 
+    if (length1 == 0 && length2 == 0) return 1; 
 
     char temp1[length1]; 
     char temp2[length2]; 
@@ -241,7 +255,20 @@ int valueOfInt (const char * input){
     int val = 0, length = 0, multiplier = 1, temp; 
     
     for (int i = 0; input[i] != '\0'; i++){
-        length++; 
+        switch(input[i]){
+            case '-': length++; break; 
+            case '1': length++; break; // FIXME maybe turn this into a character array and loop through it. 
+            case '2': length++; break; // Probably won't do much for speed and will be worse for memory, but will look cleaner (maybe not worth?)
+            case '3': length++; break; 
+            case '4': length++; break; 
+            case '5': length++; break; 
+            case '6': length++; break; 
+            case '7': length++; break; 
+            case '8': length++; break; 
+            case '9': length++; break; 
+            case '0': length++; break; 
+            default: exit(0); 
+        }
     }
     length--; 
     if (input[0] == '-'){
