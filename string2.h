@@ -253,10 +253,15 @@ int equalsIgnoreCase(const char * one, const char * two){
 
 int valueOfInt (const char * input){
     int val = 0, length = 0, multiplier = 1, temp; 
+
+    //FIXME maybe add some functionality to remove whitespace preceding characters in case there is any?
     
     for (int i = 0; input[i] != '\0'; i++){
         switch(input[i]){
-            case '-': length++; break; 
+            case '-': 
+                if (i != 0) exit(0); 
+                length++; 
+                break; 
             case '1': length++; break; // FIXME maybe turn this into a character array and loop through it. 
             case '2': length++; break; // Probably won't do much for speed and will be worse for memory, but will look cleaner (maybe not worth?)
             case '3': length++; break; 
