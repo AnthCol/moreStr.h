@@ -5,9 +5,31 @@
 
 // To-do list:
 // Remove dependence on ctype.h?
-// Make sure all of the functions are safe (or at least as safe as they can be)
+// More testing to make sure the functions are as safe as they can be. 
 // maybe include exiting messages so that the user knows?
 // need to rerun through valgrind after changes *****FIXME*****
+
+
+
+
+
+
+/*
+
+*Documentation for substring()*
+
+The substring function takes in an existing string, and two indices. 
+A starting and ending index. 
+It will allocate memory for a new string and copy the information from the original string (from the left index up to (but not including)
+the right index). 
+
+The function performs multiple checks to make sure there are no invalid lengths, or invalid index requests. 
+If there are, the program will exit. 
+
+It returns the freshly allocated string to the function that called it. 
+It must be freed by the user. 
+
+*/
 
 char * substring(char * tempString, int leftIndex, int rightIndex){
 
@@ -15,7 +37,7 @@ char * substring(char * tempString, int leftIndex, int rightIndex){
    
     int i, x = 0, length = 0; 
 
-    for (i = 0; tempString[i] != '\0'; i++){ // I'm sure strlen(tempString) could be fine here, but I wanted to make it myself. 
+    for (i = 0; tempString[i] != '\0'; i++){ 
         length++; 
     }
     
@@ -31,6 +53,24 @@ char * substring(char * tempString, int leftIndex, int rightIndex){
 
     return newString; 
 }
+
+
+/*
+
+*Documentation for endsWith()*
+
+This function takes two strings for input. 
+
+It checks the lengths of those strings to make sure that the string the user
+wants to find within the larger one can actually be found. 
+The program will exit if it cannot be done. 
+
+Otherwise, it will iterate through the strings and if it can do so successfully will return true. 
+Otherwise it will return false. 
+
+*/
+
+
 
 int endsWith(const char * input, const char * check){
     int lengthInput = 0, lengthCheck = 0, x = 0; 
@@ -49,10 +89,29 @@ int endsWith(const char * input, const char * check){
     return 1; 
 }
 
+/*
+*Documentation for isEmpty()*
+
+This function checks to see if the first character in a string is the null character. 
+If it is, it returns true. Otherwise false.
+
+*/
+
 int isEmpty(const char * input){
     if (input[0] == '\0') return 1;
     return 0; 
 }
+
+/*
+*Documentation for startsWith()*
+
+This function takes two strings as input and performs checks on their lengths to make sure that there is not a
+situation that would cause issues (the substring you are looking for being longer than the other string). 
+
+After performing these checks, it iterates through the substring and if it successfully does so returns true. 
+Otherwise it returns false. 
+
+*/
 
 int startsWith(const char * input, const char * check){
     int i = 0, x = 0; 
