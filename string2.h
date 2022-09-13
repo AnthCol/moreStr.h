@@ -192,7 +192,7 @@ int indexOf(const char * input, const char *check){ // add start position argume
 
 int contains (const char * input, const char * search){
 
-    int i = 0, x = 0, lengthInput = 0, lengthSearch = 0;
+    int i = 0, x = 0, start, lengthInput = 0, lengthSearch = 0;
 
     while (input[lengthInput] != '\0'){
         lengthInput++; 
@@ -202,13 +202,28 @@ int contains (const char * input, const char * search){
     }
     if (lengthSearch > lengthInput || lengthInput == 0 || lengthSearch == 0) exit(0); 
 
-    for (i = 0; i < lengthInput; i++){
+
+    /*
+
+        FIXME
+
+        The following function has the potential to be very slow. 
+        Maybe a better implementation would be to find all of the indices where input has the first character of search. 
+
+        From there you could run through those indices and store them in an array or something and just fast track to those indices. 
+
+    */
+
+    for (i = 0; i < lengthInput; i++){ 
         if (input[i] == search[x]){
+            start = i;
             while (i != lengthInput && input[i] == search[x]){
                 i++; 
                 x++; 
                 if (x == lengthSearch) return 1; //true 
             }
+            x = 0; 
+            i = start; 
         }
     }
 
