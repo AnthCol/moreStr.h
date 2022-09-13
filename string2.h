@@ -133,7 +133,19 @@ int startsWith(const char * input, const char * check){
     return 1; 
 }
 
+/*
 
+    *Documentation for lastIndexOf()*
+
+    This function takes two strings as input. 
+    After performing safety checks it runs through the input string backwards to find a character that matches
+    the first character of check. 
+
+    Then, it loops through the string and if "x" reaches the length of check, the last index will be returned. 
+
+    If it is not found, the function will return -1. 
+
+*/
 
 int lastIndexOf(const char * input, const char * check){
 
@@ -144,20 +156,25 @@ int lastIndexOf(const char * input, const char * check){
     while (check[lengthCheck] != '\0'){
         lengthCheck++; 
     }
-    if (lengthCheck > lengthInput || lengthInput == 0 || lengthCheck == 0) return -1; 
+    if (lengthCheck > lengthInput || lengthInput == 0 || lengthCheck == 0) return -1; // maybe exit if lengthCheck > lengthInput?
     
+    /*
+        FIXME
+        See design proposal change for contains(). A similar idea could apply here and work well.
+    */
+
     for (i = lengthInput; i >= 0; i--){
         if (input[i] == check[x]){
             start = i; 
             while (i != lengthInput && input[i] == check[x]){
                 i++; 
                 x++; 
-                if (x > lengthCheck || i > lengthInput) break; 
+                if (i > lengthInput) break; 
             }
             if (x == lengthCheck) return start; 
-            i = start - 1; 
+            i = start; 
+            x = 0; 
         }
-        x = 0; 
     }
     return -1; 
 }
@@ -207,7 +224,7 @@ int contains (const char * input, const char * search){
 
         FIXME
 
-        The following function has the potential to be very slow. 
+        The following loop has the potential to be very slow. 
         Maybe a better implementation would be to find all of the indices where input has the first character of search. 
 
         From there you could run through those indices and store them in an array or something and just fast track to those indices. 
