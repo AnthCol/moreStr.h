@@ -363,6 +363,11 @@ int regionMatches(const char * one, int twoOffset, const char * two, int startin
 
     This function takes two strings as input and iterates through them, comparing
     at every step if the characters are the exact same when converted to lowercase. 
+
+    If they do not equal eachother at any point after being changed to lowercase, 
+    the function will return 0 (false). 
+
+    If it makes it through the whole string, it will return 1 (true). 
 */
 
 int equalsIgnoreCase(const char * one, const char * two){
@@ -386,6 +391,20 @@ int equalsIgnoreCase(const char * one, const char * two){
     return 1; 
 }
 
+
+/*
+    *Documentation for valueOfInt()*
+
+    This function will take in a string and calculate an integer value with it. 
+    It first checks if there is a negative (and makes sure it is the first character in the string). 
+    After that it uses a switch case and a multiplier to calculate the number as it iterates 
+    through the string backwards. 
+
+
+    Notes:
+    It currenlty only works if the string is just a number. 
+    It will not remove whitespace or anything else. 
+*/
 
 int valueOfInt (const char * input){
     int val = 0, length = 0, multiplier = 1, temp; 
@@ -427,7 +446,7 @@ int valueOfInt (const char * input){
                 case 57: val -= 9*multiplier; break; 
             }
 
-            multiplier*= 10; 
+            multiplier *= 10; 
         }
 
     }

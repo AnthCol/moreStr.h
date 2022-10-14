@@ -46,9 +46,9 @@ int main(void){
     free(trimAfter); 
 
     char * one = "hello how are you"; 
-    char * two = "hello how are you"; 
-    printf("[should be true] regionMatches 16-24: %d\n", regionMatches(one, 0, two, 6, 10)); 
-    printf("[should be false] regionMatches 2-4: %d\n", regionMatches(one, 3, two, 2, 4));   
+    char * two = "yo yo yo hello how are you"; 
+    printf("[should be true] regionMatches 16-24: %d\n", regionMatches(one, 9, two, 0, 6)); 
+    printf("[should be false] regionMatches 2-4: %d\n", regionMatches(one, 0, two, 2, 4));   
    
 
     char * upper2 = "HELLO"; 
