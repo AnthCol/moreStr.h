@@ -45,9 +45,10 @@ int main(void){
     printf("after trim: %s\n", trimAfter); 
     free(trimAfter); 
 
-    char * tempString2 = "hello temporary"; 
-    printf("[should be true] regionMatches 16-24: %d\n", regionMatches(tempString, 6, tempString2, 16, 24)); 
-    printf("[should be false] regionMatches 2-4: %d\n", regionMatches(tempString, 0, tempString2, 2, 4));   
+    char * one = "hello how are you"; 
+    char * two = "hello how are you"; 
+    printf("[should be true] regionMatches 16-24: %d\n", regionMatches(one, 0, two, 6, 10)); 
+    printf("[should be false] regionMatches 2-4: %d\n", regionMatches(one, 3, two, 2, 4));   
    
 
     char * upper2 = "HELLO"; 

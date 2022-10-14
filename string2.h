@@ -347,10 +347,11 @@ int regionMatches(const char * one, int twoOffset, const char * two, int startin
         lengthTwo++; 
     }
     
-    if (ending < starting || lengthOne == 0 || lengthTwo == 0 || ending > lengthOne || ending > lengthTwo 
-        || starting < 0 || ending + twoOffset > lengthOne) exit(0); 
+    if (ending < starting || lengthOne == 0 || lengthTwo == 0 || starting < 0 || ending + twoOffset > lengthOne) exit(0); 
+    if (lengthOne > lengthTwo && starting + twoOffset > lengthTwo) exit(0); 
+    if (ending > lengthOne + 1 || ending + twoOffset > lengthTwo + 1) exit(0); 
 
-    for (int i = starting, x = twoOffset + starting; i < ending; i++, x++){
+    for (int i = starting, x = twoOffset; i < ending; i++, x++){
         if (one[i] != two[x]) return 0; 
     }
 
