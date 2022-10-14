@@ -47,7 +47,7 @@ int main(void){
 
     char * tempString2 = "hello temporary"; 
     printf("[should be true] regionMatches 16-24: %d\n", regionMatches(tempString, 6, tempString2, 16, 24)); 
-    printf("[should be false] regionMatches 2-4: %d\n", regionMatches(tempString, 0, tempString2, 2, 4)); 
+    printf("[should be false] regionMatches 2-4: %d\n", regionMatches(tempString, 0, tempString2, 2, 4));   
    
 
     char * upper2 = "HELLO"; 

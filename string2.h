@@ -179,6 +179,20 @@ int lastIndexOf(const char * input, const char * check){
     return -1; 
 }
 
+
+
+/*
+    *Documentation of indexOf()*
+    This function loops through the input string and will check through at every index of the 
+    string to see if the substring (or character in the form of a string) is in there. 
+
+    If it is not while doing a check, a start variable is declared to allow us to set the location of 
+    i back to where it was when we started checking for the string. 
+
+    This does have the potential to be quite slow with the nested loop - worth looking into a better 
+    implementation of this in the future. 
+
+*/
 int indexOf(const char * input, const char *check){ // add start position argument like in Java? (maybe FIXME)
 
     int lengthInput = 0, lengthCheck = 0, i = 0, x = 0, start; 
@@ -198,15 +212,29 @@ int indexOf(const char * input, const char *check){ // add start position argume
                 x++; 
             }
             if (x == lengthCheck) return start; 
-            i = start + 1; 
+            i = start; 
+            x = 0; 
         }
-        x = 0; 
     }
 
 
     return -1; 
 }
+/*
+    *Documentation of contains()*
+    This function is effectively the same as indexOf() except it returns a boolean value 
+    rather than an index at which the substring begins. 
 
+    Copy of documentation from indexOf() function:
+    This function loops through the input string and will check through at every index of the 
+    string to see if the substring (or character in the form of a string) is in there. 
+
+    If it is not while doing a check, a start variable is declared to allow us to set the location of 
+    i back to where it was when we started checking for the string. 
+
+    This does have the potential to be quite slow with the nested loop - worth looking into a better 
+    implementation of this in the future. 
+*/
 int contains (const char * input, const char * search){
 
     int i = 0, x = 0, start, lengthInput = 0, lengthSearch = 0;
@@ -219,9 +247,7 @@ int contains (const char * input, const char * search){
     }
     if (lengthSearch > lengthInput || lengthInput == 0 || lengthSearch == 0) exit(0); 
 
-
     /*
-
         FIXME
 
         The following loop has the potential to be very slow. 
@@ -246,9 +272,20 @@ int contains (const char * input, const char * search){
 
     return 0; 
 }
+/*
+    *Documentation for trim() function*
 
+    This function takes a string as input and allocates memory for a new string (that it returns). 
+    That new string is identical to the input string except the whitespace from both the beginning and end of
+    the string would be removed. 
+    For example:
 
-char * trim (const char * input){   // while this is O(n), it is kind of slow
+    input = "    Hi!    "
+    output = "Hi!"
+
+*/
+
+char * trim (const char * input){   
 
     int length = 0, left = 0, right = 0, x = 0, countSpace = 0; 
     for (int i = 0; input[i] != 0; i++){
@@ -260,13 +297,13 @@ char * trim (const char * input){   // while this is O(n), it is kind of slow
 
     if (countSpace == 0){
         // allocating memory here for consistency in main. 
-        // Don't want it to free the string that was sent to the function by returning input
-        char * temp = (char*)malloc(sizeof(char) * length); 
+        // Don't want to have issues with the user freeing a string that was not malloc'd
+        char * temp = (char*)malloc(sizeof(char) * length + 1); 
         strcpy(temp, input); 
         return temp; 
     }
     else if (countSpace == length){
-        char * temp = (char*)malloc(sizeof(int) * 1); 
+        char * temp = (char*)malloc(sizeof(char) * 2); 
         temp[0] = '\0';
         return temp; 
     }
@@ -289,7 +326,16 @@ char * trim (const char * input){   // while this is O(n), it is kind of slow
     temp[x] = '\0'; 
     return temp; 
 }
+/*
+    *Documentation for regionMatches()*
 
+    This function takes two strings, a starting and ending index, and an optional offset (it can be passed as zero) 
+    for the second string. 
+
+    The offset is applied and a loop goes through the two strings to determine if they match between the indices
+    (starting included, ending excluded). If they do not match at any point it will return false, otherwise true. 
+
+*/
 int regionMatches(const char * one, int twoOffset, const char * two, int starting, int ending){ // FIXME maybe change the order of the arguments here to make it more intuitive. 
 
     int lengthOne = 0, lengthTwo = 0; 
@@ -301,14 +347,22 @@ int regionMatches(const char * one, int twoOffset, const char * two, int startin
         lengthTwo++; 
     }
     
-    if (ending < starting || lengthOne == 0 || lengthTwo == 0 || ending > lengthOne || ending > lengthTwo || starting < 0) exit(0); 
+    if (ending < starting || lengthOne == 0 || lengthTwo == 0 || ending > lengthOne || ending > lengthTwo 
+        || starting < 0 || ending + twoOffset > lengthOne) exit(0); 
 
-    for (int i = starting, x = twoOffset; i < ending; i++, x++){
+    for (int i = starting, x = twoOffset + starting; i < ending; i++, x++){
         if (one[i] != two[x]) return 0; 
     }
 
     return 1; 
 }
+
+/*
+    *Documentation for equalsIgnoreCase()*
+
+    This function takes two strings as input and iterates through them, comparing
+    at every step if the characters are the exact same when converted to lowercase. 
+*/
 
 int equalsIgnoreCase(const char * one, const char * two){
 
@@ -323,19 +377,9 @@ int equalsIgnoreCase(const char * one, const char * two){
     if (length1 != length2) return 0; 
     if (length1 == 0 && length2 == 0) return 1; 
 
-    char temp1[length1]; 
-    char temp2[length2]; 
-
-    temp1[0] = '\0'; 
-    temp2[0] = '\0'; 
-    
 
     for (int i = 0; i < length1; i++){
-        if (isupper(one[i])) temp1[i] = tolower(one[i]); 
-        else temp1[i] = one[i]; 
-        if (isupper(two[i])) temp2[i] = tolower(two[i]); 
-        else temp2[i] = two[i]; 
-        if (temp1[i] != temp2[i]) return 0; 
+       if (tolower(one[i]) != tolower(two[i])) return 0; 
     }
    
     return 1; 
