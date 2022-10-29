@@ -6,7 +6,9 @@
 
 
 int main(void){
-    char * tempString = "hello this is a temporary string"; 
+    char * tempString; //"hello this is a temporary string"; 
+    tempString = malloc(sizeof(char) * 50); 
+    strcpy(tempString, "hello this is a temporary string"); 
     char * empty = ""; 
     int length = 0; 
     for (int i = 0; tempString[i] != '\0'; i++){
@@ -15,13 +17,24 @@ int main(void){
     
     printf("length of tempsTring is: %d\n", length);  
     printf("The tempstring is: %s\n", tempString);  
-    
-    
-    char * sub = substring(tempString, 1, 9);  
- 
-    printf("printing substring [index 1 to 8]: %s\n", sub); 
 
-    free (sub); 
+    
+    
+    substring(tempString, 1, 9);  
+ 
+    printf("printing substring [index 1 to 8]: %s\n", tempString); 
+
+    printf("now changing tempstring back to the original.\n"); 
+    strcpy(tempString, "hello this is a temporary string"); 
+
+    printf("before reverse: %s\n", tempString); 
+    reverse(tempString); 
+
+    printf("after revserse: %s\n", tempString); 
+
+    printf("now changing tempString back to the original.\n"); 
+
+    strcpy(tempString, "hellow this is a temporary string"); 
 
     printf("Ends with z: %d\n", endsWith(tempString, "z")); 
     printf("Ends with g: %d\n", endsWith(tempString, "g")); 
@@ -41,9 +54,9 @@ int main(void){
   //  char * trimIt = "            hello!            ";
     char * trimIt = "hello!"; 
     printf("pre trim: %s\n", trimIt); 
-    char * trimAfter = trim(trimIt); 
-    printf("after trim: %s\n", trimAfter); 
-    free(trimAfter); 
+    trim(trimIt); 
+    printf("after trim: %s\n", trimIt); 
+
 
     char * one = "hello how are you"; 
     char * two = "yo yo yo hello how are you"; 

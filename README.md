@@ -5,9 +5,10 @@
 ## What is string2.h?
 string2.h is a C library that is intended to be an extension of the pre-existing <string.h> library. It includes many string manipulation methods that exist in Java, which are listed below. 
 
-The functions below that say "requires free" do the same thing that some of the string methods in Java do (creates a new string and returns it). For this reason, you have to free the memory in your main function to avoid leaks (see limitations section for more). 
+This project formerly required the user to call "free()" after the use of some of these functions. They no longer need to do that, and instead the string passed to the function is the one that gets modified. I feel like it makes more sense to have the user manage all their memory on their own (if they want a copy of the string before sending one to the function they can make it) rather than memory being allocated in a function (these functions, since they take char * as input, will only work if the user has malloc'd a string). 
 
-- substring()     - - -     [**requires free**]
+- substring()
+- reverse() [not found in Java]
 - contains() 
 - endsWith()
 - equalsIgnoreCase()
@@ -15,7 +16,7 @@ The functions below that say "requires free" do the same thing that some of the 
 - isEmpty() 
 - lastIndexOf()
 - startsWith()
-- trim()          - - -     [**requires free**]
+- trim()
 - regionMatches()
 - valueOfInt()
     - Java has valueOf where you can do any number. This one will only be for integers

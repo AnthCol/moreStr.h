@@ -20,18 +20,16 @@
 
 The substring function takes in an existing string, and two indices. 
 A starting and ending index. 
-It will allocate memory for a new string and copy the information from the original string (from the left index up to (but not including)
-the right index). 
+It makes a temporary string to copy from and then fills the users original string with 
 
 The function performs multiple checks to make sure there are no invalid lengths, or invalid index requests. 
 If there are, the program will exit. 
 
-It returns the freshly allocated string to the function that called it. 
-It must be freed by the user. 
+
 
 */
 
-char * substring(char * tempString, int leftIndex, int rightIndex){
+void substring(char * tempString, int leftIndex, int rightIndex){
 
     if (leftIndex > rightIndex || leftIndex < 0 || tempString[0] == '\0') exit(0); 
    
@@ -49,11 +47,38 @@ char * substring(char * tempString, int leftIndex, int rightIndex){
         newString[x] = tempString[i]; 
         x++; 
     }
-    newString[x] = '\0';  
+    newString[x] = '\0'; 
+    for (i = 0; i < rightIndex - leftIndex; i++){
+        tempString[i] = newString[i]; 
+    }
+    free(newString); 
+    tempString[i] = '\0';  
 
-    return newString; 
+    return;
 }
 
+/*
+    *Documentation for reverse()*
+
+    This function takes a string as input (malloc'd in main) and reverses it. 
+    Then it returns back to main after modifying the string. 
+
+*/
+void reverse(char * input){
+    int length = 0; 
+    char tempChar; 
+    while (input[length] != '\0'){
+        length++; 
+    }
+
+    for (int i = 0, x = length - 1; i < length/2; i++, x--){
+        tempChar = input[i]; 
+        input[i] = input[x]; 
+        input[x] = tempChar; 
+    }
+
+    return; 
+}
 
 /*
 
