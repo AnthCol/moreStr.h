@@ -16,26 +16,26 @@
 
 /*
 
-*Documentation for substring()*
+    *Documentation for substring()*
 
-The substring function takes in an existing string, and two indices. 
-A starting and ending index. 
-It makes a temporary string to copy from and then fills the users original string with 
+    The substring function takes in an existing string, and two indices. 
+    A starting and ending index. 
+    It makes a temporary string to copy from and then fills the users original string with 
 
-The function performs multiple checks to make sure there are no invalid lengths, or invalid index requests. 
-If there are, the program will exit. 
+    The function performs multiple checks to make sure there are no invalid lengths, or invalid index requests. 
+    If there are, the program will exit. 
 
 
 
 */
 
-void substring(char * tempString, int leftIndex, int rightIndex){
+void substring(char * input, int leftIndex, int rightIndex){
 
-    if (leftIndex > rightIndex || leftIndex < 0 || tempString[0] == '\0') exit(0); 
+    if (leftIndex > rightIndex || leftIndex < 0 || input[0] == '\0') exit(0); 
    
     int i, x = 0, length = 0; 
 
-    for (i = 0; tempString[i] != '\0'; i++){ 
+    for (i = 0; input[i] != '\0'; i++){ 
         length++; 
     }
     
@@ -44,15 +44,15 @@ void substring(char * tempString, int leftIndex, int rightIndex){
     char * newString = (char*)malloc(sizeof(char) * (rightIndex-leftIndex+1)); 
     
     for (i = leftIndex; i < rightIndex; i++){
-        newString[x] = tempString[i]; 
+        newString[x] = input[i]; 
         x++; 
     }
     newString[x] = '\0'; 
     for (i = 0; i < rightIndex - leftIndex; i++){
-        tempString[i] = newString[i]; 
+        input[i] = newString[i]; 
     }
     free(newString); 
-    tempString[i] = '\0';  
+    input[i] = '\0';  
 
     return;
 }
@@ -82,16 +82,16 @@ void reverse(char * input){
 
 /*
 
-*Documentation for endsWith()*
+    *Documentation for endsWith()*
 
-This function takes two strings for input. 
+    This function takes two strings for input. 
 
-It checks the lengths of those strings to make sure that the string the user
-wants to find within the larger one can actually be found. 
-The program will exit if it cannot be done. 
+    It checks the lengths of those strings to make sure that the string the user
+    wants to find within the larger one can actually be found. 
+    The program will exit if it cannot be done. 
 
-Otherwise, it will iterate through the strings and if it can do so successfully will return true. 
-Otherwise it will return false. 
+    Otherwise, it will iterate through the strings and if it can do so successfully will return true. 
+    Otherwise it will return false. 
 
 */
 
@@ -115,10 +115,10 @@ int endsWith(const char * input, const char * check){
 }
 
 /*
-*Documentation for isEmpty()*
+    *Documentation for isEmpty()*
 
-This function checks to see if the first character in a string is the null character. 
-If it is, it returns true. Otherwise false.
+    This function checks to see if the first character in a string is the null character. 
+    If it is, it returns true. Otherwise false.
 
 */
 
@@ -128,13 +128,13 @@ int isEmpty(const char * input){
 }
 
 /*
-*Documentation for startsWith()*
+    *Documentation for startsWith()*
 
-This function takes two strings as input and performs checks on their lengths to make sure that there is not a
-situation that would cause issues (the substring you are looking for being longer than the other string). 
+    This function takes two strings as input and performs checks on their lengths to make sure that there is not a
+    situation that would cause issues (the substring you are looking for being longer than the other string). 
 
-After performing these checks, it iterates through the substring and if it successfully does so returns true. 
-Otherwise it returns false. 
+    After performing these checks, it iterates through the substring and if it successfully does so returns true. 
+    Otherwise it returns false. 
 
 */
 
@@ -310,47 +310,39 @@ int contains (const char * input, const char * search){
 
 */
 
-char * trim (const char * input){   
+void trim (char * input){   
 
-    int length = 0, left = 0, right = 0, x = 0, countSpace = 0; 
-    for (int i = 0; input[i] != 0; i++){
+    int length = 0, firstChar = -1, lastChar = -1; 
+    while(input[length] != '\0'){
+        if (firstChar == -1 && input[length] != ' ') firstChar = length; // find index of first char
         length++; 
-        if (input[i] == ' ') countSpace++; 
     }
 
     if (length == 0) exit(0); 
 
-    if (countSpace == 0){
-        // allocating memory here for consistency in main. 
-        // Don't want to have issues with the user freeing a string that was not malloc'd
-        char * temp = (char*)malloc(sizeof(char) * length + 1); 
-        strcpy(temp, input); 
-        return temp; 
-    }
-    else if (countSpace == length){
-        char * temp = (char*)malloc(sizeof(char) * 2); 
-        temp[0] = '\0';
-        return temp; 
+    for (int i = length-1; i >= 0; i--){
+        if (input[i] != ' '){
+            lastChar = i;  
+            break; 
+        }
     }
 
-    for (int i = 0; input[i] == ' '; i++){
-        left++; 
-    }
-    right = length; 
-    for (int i = length; input[i] == ' '; i--){
-        right--; 
-    }
+    char * tempString = (char*)malloc(sizeof(char) * length - firstChar - (length - lastChar) + 1); 
 
-    char * temp = (char*)malloc(sizeof(char) * (length - left + right)); 
-
-    for (int i = left; i <= right; i++){
-        temp[x] = input[i]; 
-        x++; 
+    for (int i = firstChar, x = 0; i <= lastChar; i++, x++){
+        tempString[x] = input[i]; 
     }
-
-    temp[x] = '\0'; 
-    return temp; 
+    int i; 
+    for (i = 0; i < length - firstChar - (length - lastChar) + 1; i++){
+        input[i] = tempString[i]; 
+    }
+    input[i] = '\0'; 
+    free(tempString); 
+    
+    return; 
 }
+
+
 /*
     *Documentation for regionMatches()*
 

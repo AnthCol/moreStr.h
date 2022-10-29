@@ -52,11 +52,14 @@ int main(void){
     printf("contains bonjour: %d\n", contains(tempString, "bonjour")); 
 
   //  char * trimIt = "            hello!            ";
-    char * trimIt = "hello!"; 
+   // char * trimIt = "                   hello!                "; 
+    char * trimIt = malloc(sizeof(char) * 100); 
+    strcpy(trimIt, "                  hello!                    "); 
     printf("pre trim: %s\n", trimIt); 
     trim(trimIt); 
     printf("after trim: %s\n", trimIt); 
 
+    free (trimIt); 
 
     char * one = "hello how are you"; 
     char * two = "yo yo yo hello how are you"; 
