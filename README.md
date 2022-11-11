@@ -1,5 +1,5 @@
 # string2.h
-
+### The previous version had memory allocation within the functions. If you would prefer to use that, please review past commits. 
 ## What is string2.h?
 string2.h is a C library that is intended to be an extension of the pre-existing <string.h> library. It includes many string manipulation methods that exist in Java, which are listed below. 
 
