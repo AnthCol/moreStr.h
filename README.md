@@ -26,8 +26,8 @@ Most of the functions run in O(n) (linear) time.
 This was made mainly for fun, but also for convenience when handling C strings. I felt like making a library and the first thing that came to my mind was to make one of the bad parts of C a little bit better. 
 
 ## What are the problems and/or limiations of string2.h?
-The main issue I have with this library is that it requires the user to call free in main and keep track of memory that was allocated in the function. When you don't do the memory allocation by hand it can be an easy thing to forget about, so I really don't like that it is set up that way. 
-I would like to learn more about memory management in C to see if it is even possible to modify strings the way I want to. I have already done some research into it and with what I was seeing it made me feel as though I would have to settle with this solution for now. Maybe I will come across something in the future that will allow me to modify the values of the string that was passed to the function and then send it back to main. 
+Some functions likely could be written in a faster manner. 
+There is also a decent bit of dependency on ctype.h which I would like to get rid of in the future to keep the library as lightweight as possible. 
 
 ## What did I learn making string2.h?
 Honestly not very much. I wanted to make this library for my own convenience, but I was able to do it with knowledge previously gained in my university classes. Still good practice for string handling though :)
