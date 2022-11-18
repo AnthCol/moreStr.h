@@ -25,7 +25,7 @@ Most of the functions run in O(n) (linear) time.
 ## Why did I make string2.h?
 This was made mainly for fun, but also for convenience when handling C strings. I felt like making a library and the first thing that came to my mind was to make one of the bad parts of C a little bit better. 
 
-## What are the problems and/or limiations of string2.h?
+## What are the problems and/or limitations of string2.h?
 Some functions likely could be written in a faster manner. 
 There is also a decent bit of dependency on ctype.h which I would like to get rid of in the future to keep the library as lightweight as possible. 
 
