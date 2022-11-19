@@ -7,6 +7,7 @@ This project formerly required the user to call "free()" after the use of some o
 
 - substring()
 - reverse() [not found in Java]
+- isPalindrome() [not found in Java]
 - contains() 
 - endsWith()
 - equalsIgnoreCase()

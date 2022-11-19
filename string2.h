@@ -80,6 +80,32 @@ void reverse(char * input){
     return; 
 }
 
+
+
+/*
+    *Documentation for isPalindrome()*
+
+    A palindrome is a string that reads the same forwards as it does backwards. 
+    This function considers ALL types of characters in the string (including 
+    commas, colons, periods, etc.)
+
+    It returns true or false. 
+
+
+*/
+
+int isPalindrome(const char * input){
+    int length = 0; 
+    while (input[length] != '\0'){
+        length++; 
+    }
+
+    for (int i = 0, x = length - 1; i < length/2; i++, x--){
+        if (input[i] != input[x]) return 0; 
+    }
+
+    return 1; 
+}
 /*
 
     *Documentation for endsWith()*
@@ -123,8 +149,7 @@ int endsWith(const char * input, const char * check){
 */
 
 int isEmpty(const char * input){
-    if (input[0] == '\0') return 1;
-    return 0; 
+    return (input[0] == '\0'); 
 }
 
 /*

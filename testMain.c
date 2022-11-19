@@ -9,6 +9,12 @@ int main(void){
     char * tempString; //"hello this is a temporary string"; 
     tempString = malloc(sizeof(char) * 50); 
     strcpy(tempString, "hello this is a temporary string"); 
+
+
+    char pali[100] = "racecar"; 
+    printf("is palindrome for racecar: %d\n", isPalindrome(pali)); 
+
+
     char * empty = ""; 
     int length = 0; 
     for (int i = 0; tempString[i] != '\0'; i++){
