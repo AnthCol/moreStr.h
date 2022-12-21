@@ -4,10 +4,8 @@
 
 
 // To-do list:
-// Remove dependence on ctype.h?
-// More testing to make sure the functions are as safe as they can be. 
+// Remove dependence on ctype.h (probably not necessary)
 // maybe include exiting messages so that the user knows?
-// need to rerun through valgrind after changes *****FIXME*****
 
 
 
@@ -33,11 +31,7 @@ void substring(char * input, int leftIndex, int rightIndex){
 
     if (leftIndex > rightIndex || leftIndex < 0 || input[0] == '\0') exit(0); 
    
-    int i, x = 0, length = 0; 
-
-    for (i = 0; input[i] != '\0'; i++){ 
-        length++; 
-    }
+    int i, x = 0, length = strlen(input); 
     
     if (rightIndex > length || leftIndex > length || rightIndex - leftIndex == 0) exit(0); 
 
@@ -65,11 +59,8 @@ void substring(char * input, int leftIndex, int rightIndex){
 
 */
 void reverse(char * input){
-    int length = 0; 
+    int length = strlen(input); 
     char tempChar; 
-    while (input[length] != '\0'){
-        length++; 
-    }
 
     for (int i = 0, x = length - 1; i < length/2; i++, x--){
         tempChar = input[i]; 
@@ -95,10 +86,7 @@ void reverse(char * input){
 */
 
 int isPalindrome(const char * input){
-    int length = 0; 
-    while (input[length] != '\0'){
-        length++; 
-    }
+    int length = strlen(input); 
 
     for (int i = 0, x = length - 1; i < length/2; i++, x--){
         if (input[i] != input[x]) return 0; 
@@ -124,17 +112,11 @@ int isPalindrome(const char * input){
 
 
 int endsWith(const char * input, const char * check){
-    int lengthInput = 0, lengthCheck = 0, x = 0; 
-   
-    for (int i = 0; input[i] != '\0'; i++){
-        lengthInput++;
-    }
-    for (int i = 0; check[i] != '\0'; i++){
-        lengthCheck++; 
-    }
+    int lengthInput = strlen(input), lengthCheck = strlen(check); 
+
     if (lengthCheck > lengthInput || lengthInput == 0 || lengthCheck == 0) exit(0); 
 
-    for (int i = lengthInput-lengthCheck; input[i] != '\0'; i++, x++){
+    for (int i = lengthInput-lengthCheck, x = 0; input[i] != '\0'; i++, x++){
         if (input[i] != check[x]) return 0; 
     }
     return 1; 
@@ -164,17 +146,12 @@ int isEmpty(const char * input){
 */
 
 int startsWith(const char * input, const char * check){
-    int i = 0, x = 0; 
-    while (input[i] != '\0'){
-        i++; 
-    }
-    while (check[x] != '\0'){
-        x++; 
-    }
-    if (x > i || i == 0 || x == 0) exit(0); 
+    int length_input = strlen(input), length_check = strlen(check); 
 
-    i = 0; 
+    if (length_check > length_input || length_input == 0 || length_check == 0) exit(0); 
 
+
+    int i = 0; 
     while (check[i] != '\0'){
         if (input[i] != check[i]) return 0; 
         i++; 
@@ -199,13 +176,7 @@ int startsWith(const char * input, const char * check){
 
 int lastIndexOf(const char * input, const char * check){
 
-    int lengthInput = 0, lengthCheck = 0, i = 0, x = 0, start; 
-    while (input[lengthInput] != '\0'){
-        lengthInput++; 
-    }
-    while (check[lengthCheck] != '\0'){
-        lengthCheck++; 
-    }
+    int lengthInput = strlen(input), lengthCheck = strlen(check), i = 0, x = 0, start; 
     if (lengthCheck > lengthInput || lengthInput == 0 || lengthCheck == 0) return -1; // maybe exit if lengthCheck > lengthInput?
     
     /*
@@ -245,13 +216,8 @@ int lastIndexOf(const char * input, const char * check){
 */
 int indexOf(const char * input, const char *check){ // add start position argument like in Java? (maybe FIXME)
 
-    int lengthInput = 0, lengthCheck = 0, i = 0, x = 0, start; 
-    while (input[lengthInput] != '\0'){
-        lengthInput++; 
-    }
-    while (check[lengthCheck] != '\0'){
-        lengthCheck++; 
-    }
+    int lengthInput = strlen(input), lengthCheck = strlen(check), i = 0, x = 0, start; 
+
     if (lengthCheck > lengthInput) return -1; 
     
     for (i = 0; i < lengthInput; i++){
@@ -287,14 +253,8 @@ int indexOf(const char * input, const char *check){ // add start position argume
 */
 int contains (const char * input, const char * search){
 
-    int i = 0, x = 0, start, lengthInput = 0, lengthSearch = 0;
+    int i = 0, x = 0, start, lengthInput = strlen(input), lengthSearch = strlen(search);
 
-    while (input[lengthInput] != '\0'){
-        lengthInput++; 
-    }
-    while (search[lengthSearch] != '\0'){
-        lengthSearch++; 
-    }
     if (lengthSearch > lengthInput || lengthInput == 0 || lengthSearch == 0) exit(0); 
 
     /*
@@ -380,15 +340,8 @@ void trim (char * input){
 */
 int regionMatches(const char * one, int twoOffset, const char * two, int starting, int ending){ // FIXME maybe change the order of the arguments here to make it more intuitive. 
 
-    int lengthOne = 0, lengthTwo = 0; 
+    int lengthOne = strlen(one), lengthTwo = strlen(two); 
 
-    while (one[lengthOne] != '\0'){
-        lengthOne++; 
-    }
-    while (two[lengthTwo] != '\0'){
-        lengthTwo++; 
-    }
-    
     if (ending < starting || lengthOne == 0 || lengthTwo == 0 || starting < 0 || ending + twoOffset > lengthOne) exit(0); 
     if (lengthOne > lengthTwo && starting + twoOffset > lengthTwo) exit(0); 
     if (ending > lengthOne + 1 || ending + twoOffset > lengthTwo + 1) exit(0); 
@@ -414,14 +367,8 @@ int regionMatches(const char * one, int twoOffset, const char * two, int startin
 
 int equalsIgnoreCase(const char * one, const char * two){
 
+    int length1 = strlen(one), length2 = strlen(two); 
 
-    int length1 = 0, length2 = 0; 
-    for (int i = 0; one[i] != '\0'; i++){
-        length1++; 
-    }
-    for (int i = 0; two[i] != '\0'; i++){
-        length2++; 
-    }
     if (length1 != length2) return 0; 
     if (length1 == 0 && length2 == 0) return 1; 
 
