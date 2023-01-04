@@ -35,17 +35,17 @@ void substring(char * input, int leftIndex, int rightIndex){
     
     if (rightIndex > length || leftIndex > length || rightIndex - leftIndex == 0) exit(0); 
 
-    char * newString = (char*)malloc(sizeof(char) * (rightIndex-leftIndex+1)); 
-    
+    char newString[rightIndex-leftIndex + 1];     
     for (i = leftIndex; i < rightIndex; i++){
         newString[x] = input[i]; 
         x++; 
     }
     newString[x] = '\0'; 
+
     for (i = 0; i < rightIndex - leftIndex; i++){
         input[i] = newString[i]; 
     }
-    free(newString); 
+
     input[i] = '\0';  
 
     return;
@@ -312,18 +312,18 @@ void trim (char * input){
         }
     }
 
-    char * tempString = (char*)malloc(sizeof(char) * length - firstChar - (length - lastChar) + 1); 
+    char tempString[length - firstChar - (length - lastChar) + 1]; 
 
     for (int i = firstChar, x = 0; i <= lastChar; i++, x++){
         tempString[x] = input[i]; 
     }
+    
     int i; 
+
     for (i = 0; i < length - firstChar - (length - lastChar) + 1; i++){
         input[i] = tempString[i]; 
     }
     input[i] = '\0'; 
-    free(tempString); 
-    
     return; 
 }
 
